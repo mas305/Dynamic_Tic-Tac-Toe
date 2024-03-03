@@ -1,14 +1,18 @@
 let currentPlayer = "X";
-const NUMBER_OF_ROWS = 3;
+const NUMBER_OF_ROWS = 4;
 const turns = NUMBER_OF_ROWS ** 2;
 let turns_counter = 0;
 const resetButton = document.querySelector("#reset");
 
-let board = [
-  ["_", "_", "_"],
-  ["_", "_", "_"],
-  ["_", "_", "_"],
-];
+const createBoardArray = () => {
+  let board = [];
+  for (let row = 0; row < NUMBER_OF_ROWS; row++) {
+    board.push(Array.from({ length: NUMBER_OF_ROWS }, () => "_"));
+  }
+  return board;
+};
+
+let board = createBoardArray();
 
 const getCellplacment = (index, numOfRows) => {
   const row = Math.floor(index / NUMBER_OF_ROWS);
@@ -95,11 +99,7 @@ const runDrawEvent = () => {
 const resetBoard = () => {
   document.querySelector(".board").remove();
   createBoard();
-  board = [
-    ["_", "_", "_"],
-    ["_", "_", "_"],
-    ["_", "_", "_"],
-  ];
+  board = createBoardArray();
   currentPlayer = "X";
   turns_counter = 0;
 };
