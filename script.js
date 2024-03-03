@@ -1,8 +1,19 @@
 let currentPlayer = "X";
-const NUMBER_OF_ROWS = 4;
-const turns = NUMBER_OF_ROWS ** 2;
+let NUMBER_OF_ROWS = 3;
+let turns = NUMBER_OF_ROWS ** 2;
 let turns_counter = 0;
 const resetButton = document.querySelector("#reset");
+const DynamicBtn = document.querySelector(".submit_btn");
+const DynamicInput = document.querySelector(".numOfRows");
+
+const updateBoardSize = () => {
+  const numRows = parseInt(DynamicInput.value);
+  NUMBER_OF_ROWS = numRows;
+  turns = NUMBER_OF_ROWS ** 2;
+  resetBoard();
+};
+
+DynamicBtn.addEventListener("click", updateBoardSize);
 
 const createBoardArray = () => {
   let board = [];
@@ -149,7 +160,6 @@ const createCell = (i) => {
 const createBoard = () => {
   const container = document.querySelector(".container");
   const board = document.createElement("div");
-
   board.classList.add("board");
 
   for (let i = 0; i < turns; i++) {
